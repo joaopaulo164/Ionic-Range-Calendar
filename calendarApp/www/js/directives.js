@@ -1,17 +1,9 @@
 /*
-Incluir archivo en el proyecto.
-Copiar archivos a lib/js:
- jquery.min.js
- jquery-ui.min.js
- jquery.ui.touch-punch.min.js
- moment+langs.min.js
- jquery.rangecalendar.js
- 
-e incluirlos.
+Incluir directiva.
+Copiar archivos del lib e incluirlos en el index.
 */
 
-angular.module('starter.directives', []);
-
+angular.module('starter.directives', [])
 .directive('dateSelect', function() {
           return {
               restrict: 'A',

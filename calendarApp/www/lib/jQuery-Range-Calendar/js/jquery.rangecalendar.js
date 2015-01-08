@@ -6,8 +6,6 @@
  */
 
 
-
-
 ;( function( $, window, undefined ) {
 	
 $.fn.rangeCalendar = function(options) {
@@ -17,7 +15,7 @@ $.fn.rangeCalendar = function(options) {
 			lang: "en",
 			theme: "default-theme",
 			themeContext: this,
-			startDate: moment().lang('es'),
+			startDate: moment(),
 			endDate: moment().add('months', 12),
 			start : "-1",
 			startRangeWidth : 1, 
@@ -27,7 +25,7 @@ $.fn.rangeCalendar = function(options) {
 			autoHideMonths: false,
 			visible: true,
 			trigger: null,
-			changeRangeCallback : function( el, cont, dateProp ) {console.log(cont); return false; }
+			changeRangeCallback : function( el, cont, dateProp ) {console.log(cont.start); localStorage.setItem('currentDate', cont.start); return false; }
 		};
 	
     var returnObj;
