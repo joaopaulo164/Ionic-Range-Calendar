@@ -44,29 +44,15 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('CalCtrl', function($scope, LS) {
-  this.value = LS.getData();
-  this.latestData = function() {
-    return LS.getData();
-  };
-  this.update = function(val) {
-    return LS.setData(val);
-  };
-})
-//factory para escuchar el cambio del localstorage
-.factory("LS", function($window, $rootScope) {
-  angular.element($window).on('storage', function(event) {
-    if (event.key === 'currentDate') {
-      $rootScope.$apply();
-    }
-  });
-  return {
-    setData: function(val) {
-      $window.localStorage && $window.localStorage.setItem('currentDate', val);
-      return this;
-    },
-    getData: function() {
-      return $window.localStorage && $window.localStorage.getItem('currentDate');
+.controller('CalCtrl', function($scope) {
+  $scope.safeApply = function(fn) {
+    var phase = this.$root.$$phase;
+    if(phase == '$apply' || phase == '$digest') {
+      if(fn && (typeof(fn) === 'function')) {
+        fn();
+      }
+    } else {
+      this.$apply(fn);
     }
   };
 })

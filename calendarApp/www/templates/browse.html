@@ -1,6 +1,8 @@
 <ion-view view-title="Calendar">
   <ion-content>
-  	<div date-select="{theme:'orange-light-theme', lang: 'es'}"></div>
-  	<h1>{{m.latestData()}}</h1>
+<!--   	<div date-select="{theme:'orange-light-theme', lang: 'es'}"></div>
+ --> 
+ 	<range-cal lang='es' start-range-width='1' min-range-width='1' max-range-width='1'   theme='orange-light-theme' ng-model="calendarValue">
+  	<h1>{{calendarValue}}</h1>
   </ion-content>
 </ion-view>
