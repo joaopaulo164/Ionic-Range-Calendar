@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives'])
+angular.module('starter', ['ionic', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -19,6 +19,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
     }
   });
 })
+
+ .factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+  }
+}])
+
+
+.directive('dateSelect', function() {
+          return {
+              restrict: 'A',
+              link: function(scope, ele, attrs){
+                $(ele).rangeCalendar(scope.$eval(attrs.dateSelect));
+              }
+          };
+      })
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -44,7 +71,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
     views: {
       'menuContent': {
         templateUrl: "templates/browse.html",
-        controller: 'CalCtrl as m'
+        controller: 'CalCtrl'
       }
     }
   })

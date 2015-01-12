@@ -4,7 +4,13 @@
  * Copyright 2013, Angelo Libero Mangieri
  * Email: angelo@afreeux.com
  */
+
+
+
+
 ;( function( $, window, undefined ) {
+
+
 	
 $.fn.rangeCalendar = function(options) {
     
@@ -13,7 +19,7 @@ $.fn.rangeCalendar = function(options) {
 			lang: "en",
 			theme: "default-theme",
 			themeContext: this,
-			startDate: moment(),
+			startDate: moment().lang('es'),
 			endDate: moment().add('months', 12),
 			start : "-1",
 			startRangeWidth : 1, 
@@ -23,7 +29,7 @@ $.fn.rangeCalendar = function(options) {
 			autoHideMonths: false,
 			visible: true,
 			trigger: null,
-			changeRangeCallback : function( el, cont, dateProp ) {console.log(cont.start); return false; }
+			changeRangeCallback : function( el, cont, dateProp ) {console.log(cont); localStorage.setItem('date-id', JSON.stringify(cont)); return false; }
 		};
 	
     var returnObj;
