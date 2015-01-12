@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,16 +36,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   }
 }])
-
-
-.directive('dateSelect', function() {
-          return {
-              restrict: 'A',
-              link: function(scope, ele, attrs){
-                $(ele).rangeCalendar(scope.$eval(attrs.dateSelect));
-              }
-          };
-      })
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

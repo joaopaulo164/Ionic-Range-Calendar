@@ -9,14 +9,25 @@ Copiar archivos a lib/js:
  
 e incluirlos.
 */
-
-angular.module('starter.directives', []);
-
-.directive('dateSelect', function() {
-          return {
-              restrict: 'A',
-              link: function(scope, ele, attrs){
-                $(ele).rangeCalendar(scope.$eval(attrs.dateSelect));
-              }
-          };
-      });
+angular.module('starter.directives', [])
+.directive('rangeCal', function() {
+    return {
+        restrict: 'AE',
+        scope: false,
+        link: function(scope, element, attrs) {
+            $(element).rangeCalendar({
+            	lang: attrs.lang,
+                theme: attrs.theme,
+                start: attrs.start,
+                startRangeWidth: parseInt(attrs.startRangeWidth),
+                minRangeWidth: parseInt(attrs.minRangeWidth),
+                maxRangeWidth: parseInt(attrs.maxRangeWidth),
+                changeRangeCallback: function( el, cont, dateProp ) {
+                	console.log(cont);
+                    localStorage.setItem('date-id', JSON.stringify(cont));
+                    return false;
+                }
+            });
+        }
+    };
+});

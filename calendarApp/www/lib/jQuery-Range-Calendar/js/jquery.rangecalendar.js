@@ -4,22 +4,15 @@
  * Copyright 2013, Angelo Libero Mangieri
  * Email: angelo@afreeux.com
  */
-
-
-
-
 ;( function( $, window, undefined ) {
-
-
 	
 $.fn.rangeCalendar = function(options) {
     
     var defaults = {
-		
 			lang: "en",
 			theme: "default-theme",
 			themeContext: this,
-			startDate: moment().lang('es'),
+			startDate: moment(),
 			endDate: moment().add('months', 12),
 			start : "-1",
 			startRangeWidth : 1, 
@@ -29,7 +22,7 @@ $.fn.rangeCalendar = function(options) {
 			autoHideMonths: false,
 			visible: true,
 			trigger: null,
-			changeRangeCallback : function( el, cont, dateProp ) {console.log(cont); localStorage.setItem('date-id', JSON.stringify(cont)); return false; }
+			changeRangeCallback : function( el, cont, dateProp ) {console.log(cont.start); return false; }
 		};
 	
     var returnObj;
@@ -773,3 +766,4 @@ $.fn.rangeCalendar = function(options) {
 
 
 
+w
