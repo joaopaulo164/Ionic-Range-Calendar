@@ -10,24 +10,30 @@ Copiar archivos a lib/js:
 e incluirlos.
 */
 angular.module('starter.directives', [])
-.directive('rangeCal', function() {
+.directive('rangeCal', function($rootScope) {
     return {
         restrict: 'AE',
-        scope: false,
+        scope:{
+            now: '@'
+        },
         link: function(scope, element, attrs) {
-            $(element).rangeCalendar({
-            	lang: attrs.lang,
-                theme: attrs.theme,
-                start: attrs.start,
-                startRangeWidth: parseInt(attrs.startRangeWidth),
-                minRangeWidth: parseInt(attrs.minRangeWidth),
-                maxRangeWidth: parseInt(attrs.maxRangeWidth),
-                changeRangeCallback: function( el, cont, dateProp ) {
-                	console.log(cont);
-                    localStorage.setItem('date-id', JSON.stringify(cont));
-                    return false;
-                }
-            });
+            var triggerRelink = function(){
+                $(element).rangeCalendar({
+                	lang: attrs.lang,
+                    theme: attrs.theme,
+                    start: attrs.start,
+                    startRangeWidth: parseInt(attrs.startRangeWidth),
+                    minRangeWidth: parseInt(attrs.minRangeWidth),
+                    maxRangeWidth: parseInt(attrs.maxRangeWidth),
+                    changeRangeCallback: function( el, cont, dateProp ) {
+                        localStorage.setItem('date-id', JSON.stringify(cont));
+                        return false;
+                    }
+                }).setStartDate(scope.now);
+            }
+
+            triggerRelink();                
+            $rootScope.$on(attrs.relinkEvent, triggerRelink);
         }
     };
 });

@@ -44,18 +44,26 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('CalCtrl', function($scope, $localstorage) {
+.controller('CalCtrl', function($scope, $localstorage, $state, $window, $rootScope) {
+  $scope.now = moment();
   var _refreshViewData = function () {
       $scope.dia = $localstorage.getObject('date-id');
     }
-
   _refreshViewData();
-
   $scope.refresh = function () {
-           _refreshViewData(); 
-    }
-  
-  
+      _refreshViewData();
+  }
+  $scope.reload = function(){
+    {
+        $rootScope.$broadcast('rangeCalendar');
+        _refreshViewData();
+    };
+
+    //$state.go($state.$current, null, { reload: true });
+    //localStorage.setItem('date-id', JSON.stringify(moment()));
+    //$window.location.reload(true);
+    //$scope.now = moment();
+  }
 
 })
 

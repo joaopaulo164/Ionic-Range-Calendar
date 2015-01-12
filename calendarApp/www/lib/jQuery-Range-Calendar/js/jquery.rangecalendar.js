@@ -108,7 +108,6 @@ $.fn.rangeCalendar = function(options) {
 			
 			var dateCell = obj.calendarObj.find('.cell[date-id="'+dateId+'"]').eq(0);
 			dateCell.trigger("click");
-			alert(startDate);
 			
 			var monthCell = obj.monthsObj.find('.cell[month-id="'+monthId+'"]').eq(0);
 			monthCell.trigger("click");
@@ -131,8 +130,6 @@ $.fn.rangeCalendar = function(options) {
 		},
 		
 		obj.update = function() {
-			
-			console.log("update");
 			moment.lang(obj.lang);
 			obj.setTheme(obj.theme);
 			obj._generateView();
@@ -755,15 +752,3 @@ $.fn.rangeCalendar = function(options) {
 };
 
 } )( jQuery, window );
-
-
-
-
-
-
-
-
-
-
-
-w
